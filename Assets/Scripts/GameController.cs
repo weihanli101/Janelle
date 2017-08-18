@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
 		
 		//TODO: chnage game conditionlater
 		while (Time.realtimeSinceStartup < 100) {
-			randNumForLeftPortal = Random.Range(0, 4);
+			/*randNumForLeftPortal = Random.Range(0, 4);
 			randNumForRightPortal = Random.Range(0, 4);
 			
 			//for left portal
@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour {
 			//basement
 			else if (randNumForRightPortal == 3) {
 				rightPortal.GetComponent<Transform>().position = new Vector2(rightPortal.GetComponent<Transform>().position.x, -6.37f);
-			}
+			}*/
 			yield return new WaitForSeconds (portalMovingRate);
 		}		
 	}
