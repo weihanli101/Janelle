@@ -24,6 +24,7 @@ public class DoorController : MonoBehaviour {
         //if the player or janelle touches the door proc animation && move
         if (other.CompareTag("Janelle")) {
             GetComponent<Animator>().SetTrigger("useDoor");
+            moveToAnotherDoor(false);
         }
         if (other.CompareTag("Player")) {
             GetComponent<Animator>().SetTrigger("useDoor");
@@ -64,7 +65,6 @@ public class DoorController : MonoBehaviour {
                 GameObject.Find("Door Right Top Floor").GetComponent<Animator>().SetTrigger("useDoor");
             }
 
-
             //Door Right Top Floor --> Door Left Mid Floor
             else if (this.gameObject.name.Equals("Door Right Top Floor")) {
                 Player.GetComponent<Transform>().position = new Vector2(-3.6f, -0.3f);
@@ -82,7 +82,57 @@ public class DoorController : MonoBehaviour {
                 Player.GetComponent<Transform>().position = new Vector2(-3.6f, -3.13f);
                 GameObject.Find("Door Left Main Floor").GetComponent<Animator>().SetTrigger("useDoor");
             }
+        }
+        else{
 
+//Door Left Basement --> Door Right Main Floor
+            if (this.gameObject.name.Equals("Door Left Basement")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(3.5f, -3.13f);
+//pop the animation of the exit door manually since you tp the char slightly to the side
+                GameObject.Find("Door Right Main Floor").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+//Door Right Main Floor --> Door Left Basement
+            else if (this.gameObject.name.Equals("Door Right Main Floor")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(-3.6f, -6.51f);
+                GameObject.Find("Door Left Basement").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+//Door Right Basement --> Door Left Top Floor
+            else if (this.gameObject.name.Equals("Door Right Basement")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(-3.6f, 2.3f);
+                GameObject.Find("Door Left Top Floor").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+//Door Left Top Floor --> Door Right Basement
+            else if (this.gameObject.name.Equals("Door Left Top Floor")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(3.5f, -6.51f);
+                GameObject.Find("Door Right Basement").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+//Door Left Main Floor --> Door Right Top Floor
+            else if (this.gameObject.name.Equals("Door Left Main Floor")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(3.5f, 2.3f);
+                GameObject.Find("Door Right Top Floor").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+//Door Right Top Floor --> Door Left Mid Floor
+            else if (this.gameObject.name.Equals("Door Right Top Floor")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(-3.6f, -0.3f);
+                GameObject.Find("Door Left Mid Floor").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+// Door Left Mid Floor -->  Door Right Mid Floor
+            else if (this.gameObject.name.Equals("Door Left Mid Floor")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(3.5f, -0.3f);
+                GameObject.Find("Door Right Mid Floor").GetComponent<Animator>().SetTrigger("useDoor");
+            }
+
+//Door Right Mid Floor --> Door Left Main Floor
+            else if (this.gameObject.name.Equals("Door Right Mid Floor")) {
+                Janelle.GetComponent<Transform>().position = new Vector2(-3.6f, -3.13f);
+                GameObject.Find("Door Left Main Floor").GetComponent<Animator>().SetTrigger("useDoor");
+            }
         }
     }
 
