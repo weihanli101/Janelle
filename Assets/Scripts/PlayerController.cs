@@ -54,6 +54,11 @@ public class PlayerController : MonoBehaviour {
 		if (other.CompareTag("Ground") && CompareTag("Player")) {
 			rbPlayer.gravityScale = 1f;
 		}
+        //add to bonus points
+        if (other.CompareTag("Pickup") && CompareTag("Player")){
+            print("pick UP");
+            Destroy(other.gameObject);
+        }
 	}
 
 	private void UpdateAnimations(){

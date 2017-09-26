@@ -26,7 +26,6 @@ public class JanelleController : MonoBehaviour {
         }
 
         else{
-            print("NORMAL");
             if(player.GetComponent<Transform>().position.x > transform.position.x +1){
                 GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
             }
