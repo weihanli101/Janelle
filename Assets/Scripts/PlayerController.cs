@@ -9,17 +9,25 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rbPlayer;
 	private Vector2 playerMoveVector;
     private float fallTimer;
+    private float timeSinceLastCombo;
+    private GameController _gameController;
 	
 	
 	void Start () {
 		rbPlayer = GetComponent<Rigidbody2D>();
         fallTimer = 0.0f;
+        timeSinceLastCombo = 0.0f;
+		_gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
 	}
 	
 	void FixedUpdate () {
+        //update combo time
+        timeSinceLastCombo += Time.deltaTime;
+        if(timeSinceLastCombo>1.5f){
+            _gameController.combo = 1;
+        }
 		UpdateAnimations();
 		playerMoveVector = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), 0) * MovementSpeed;
-		//rbPlayer.AddForce(playerMoveVector);
 		rbPlayer.velocity = playerMoveVector;
 		if (transform.position.y <= -4.65f) {
 			GetComponent<BoxCollider2D>().enabled = true;
@@ -56,7 +64,11 @@ public class PlayerController : MonoBehaviour {
 		}
         //add to bonus points
         if (other.CompareTag("Pickup") && CompareTag("Player")){
-            print("pick UP");
+            _gameController.combo += 1;
+            if(_gameController.combo >= 99){
+                _gameController.combo = 99;
+            }
+            timeSinceLastCombo = 0.0f;
             Destroy(other.gameObject);
         }
 	}
