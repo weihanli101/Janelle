@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
 	public float MovementSpeed;
 	public float jumpPower;
 
+    //audio clips
+    public AudioClip collectSound;
+
 	private Rigidbody2D rbPlayer;
 	private Vector2 playerMoveVector;
     private float fallTimer;
@@ -64,6 +67,7 @@ public class PlayerController : MonoBehaviour {
 		}
         //add to bonus points
         if (other.CompareTag("Pickup") && CompareTag("Player")){
+            GetComponent<AudioSource>().PlayOneShot(collectSound);
             _gameController.combo += 1;
             if(_gameController.combo >= 99){
                 _gameController.combo = 99;

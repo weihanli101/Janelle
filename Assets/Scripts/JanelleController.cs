@@ -4,6 +4,15 @@ public class JanelleController : MonoBehaviour {
 	public GameObject player;
 	public float speed;
 
+    //Audio
+    public AudioClip yayClip;
+    public AudioClip hugClip;
+    public AudioClip noClip;
+    public AudioClip loveClip;
+
+    //ui
+    public GameObject hugText;
+
 	private Rigidbody2D rbPlayer;
 	private Vector3 movementPos;
 	private bool directionBool;
@@ -33,7 +42,6 @@ public class JanelleController : MonoBehaviour {
                 GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
             }
         }
-
 
         UpdateAnimations();
 	}

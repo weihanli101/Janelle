@@ -4,6 +4,9 @@ public class DoorController : MonoBehaviour {
     public GameObject Player;
     public GameObject Janelle;
 
+    //audio
+    public AudioClip doorAudio;
+
     public GameObject basementLeftDoor;
     public GameObject basementRightDoor;
     public GameObject mainFloorLeftDoor;
@@ -23,10 +26,12 @@ public class DoorController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         //if the player or janelle touches the door proc animation && move
         if (other.CompareTag("Janelle")) {
+            GetComponent<AudioSource>().PlayOneShot(doorAudio);
             GetComponent<Animator>().SetTrigger("useDoor");
             moveToAnotherDoor(false);
         }
         if (other.CompareTag("Player")) {
+            GetComponent<AudioSource>().PlayOneShot(doorAudio);
             GetComponent<Animator>().SetTrigger("useDoor");
             moveToAnotherDoor(true);
         }
